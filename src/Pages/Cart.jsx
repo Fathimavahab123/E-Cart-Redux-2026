@@ -41,7 +41,7 @@ function Cart() {
           </div>
         </div>
         <div className='col-lg-4'>
-          <div className='border shadow p-5 rounded text-center'>
+          <div className='border shadow p-4 rounded text-center'>
             <h3>Total Amount : <span className='text-danger'>$ 300</span></h3>
             <hr />
             <button className='btn btn-success w-75'>CHECKOUT</button>
