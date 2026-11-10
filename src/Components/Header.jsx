@@ -6,12 +6,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import Badge from 'react-bootstrap/Badge';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { searchProduct } from '../redux/slices/productSlice';
 
 
 function Header({insideProduct}) {
-  const dispatch=useDispatch()
+ const userWishlist=useSelector(state=>state.wishlistReducer)
+ const dispatch=useDispatch()
   return (
    <Navbar expand="lg" className="bg-primary fixed-top">
       <Container>
@@ -22,7 +23,7 @@ function Header({insideProduct}) {
             {insideProduct&& <Nav.Item>
               <input onChange={e=>dispatch(searchProduct(e.target.value))} type="text" className='form-control' placeholder='Search your products' />
             </Nav.Item>}
-           <Link to={"/wishlist"} className='text-light text-decoration-none fw-bold ms-5'> <FontAwesomeIcon icon={faHeart} className='btn btn-danger me-2'/>Wishlist <Badge bg="secondary">10</Badge> </Link>
+           <Link to={"/wishlist"} className='text-light text-decoration-none fw-bold ms-5'> <FontAwesomeIcon icon={faHeart} className='btn btn-danger me-2'/>Wishlist <Badge bg="secondary">{userWishlist?.length}</Badge> </Link>
            <Link to={"/cart"} className='text-light text-decoration-none fw-bold ms-5'> <FontAwesomeIcon icon={faCartPlus} className='btn btn-success me-2'/>Cart <Badge bg="secondary">10</Badge> </Link>
            </Nav>
         </Navbar.Collapse>
